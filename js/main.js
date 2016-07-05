@@ -1,43 +1,45 @@
 chrome.browserAction.onClicked.addListener(function (tab) {
+
     removeAllCookiesFromDomain(tab.url);
+
+    // Refresh tab
+    chrome.tabs.executeScript(tab.id, {code: 'window.location.reload();'});
 });
 
 function removeAllCookiesFromDomain(currentTabUrl) {
 
-    var noDotDomain = currentTabUrl.match(/:\/\/(.[^/:]+)/)[1];
-    var domain = "." + noDotDomain;
-    var mainDomain = domain;
-    var mainDomainNoDot = noDotDomain;
-    if (domain.indexOf('.www.') == 0) {
-        mainDomain = '.' + domain.substr(5);
-    }
-    if (domain.indexOf('www.') == 0) {
-        mainDomainNoDot = '.' + domain.substr(5);
-    }
+    var splittedUrl = (new URL(currentTabUrl)).hostname.split('.');
+    var urlPieces = splittedUrl.pop(); // *.de
 
-    //delete all host cookies
-    chrome.cookies.getAll({domain: domain}, function (cookies) {
-        for (var i = 0; i < cookies.length; i++) {
-            chrome.cookies.remove({url: "http://" + domain + cookies[i].path, name: cookies[i].name});
-        }
-    });
-    //and for the actual domain, if starts with www. (not sure that's really proper behavior?)
-    chrome.cookies.getAll({domain: mainDomain}, function (cookies) {
-        for (var i = 0; i < cookies.length; i++) {
-            chrome.cookies.remove({url: "http://" + domain + cookies[i].path, name: cookies[i].name});
-        }
-    });
-    //delete all host cookies (no dot version)
-    chrome.cookies.getAll({domain: noDotDomain}, function (cookies) {
-        for (var i = 0; i < cookies.length; i++) {
-            chrome.cookies.remove({url: "http://" + noDotDomain + cookies[i].path, name: cookies[i].name});
-        }
-    });
-    //and for the actual domain, no dots
-    chrome.cookies.getAll({domain: mainDomainNoDot}, function (cookies) {
-        for (var i = 0; i < cookies.length; i++) {
-            chrome.cookies.remove({url: "http://" + mainDomainNoDot + cookies[i].path, name: cookies[i].name});
-        }
-    });
+    // Each time one more Subdomain
+    while (splittedUrl.length > 0) {
 
+        urlPieces = splittedUrl.pop() + "." + urlPieces; // first loop: seamex.de
+
+        // Without Dot
+        chrome.cookies.getAll({domain: urlPieces}, function (cookies) {
+            for (var i = 0; i < cookies.length; i++) {
+                var scheme = "http://";
+
+                if(cookies[i].secure)
+                    scheme = "https://";
+
+                // Protocol agnostic
+                chrome.cookies.remove({url: scheme + urlPieces + cookies[i].path, name: cookies[i].name});
+            }
+        });
+
+        // With dot
+        chrome.cookies.getAll({domain: "." + urlPieces}, function (cookies) {
+            for (var i = 0; i < cookies.length; i++) {
+                var scheme = "http://";
+
+                if(cookies[i].secure)
+                    scheme = "https://";
+
+                // Protocol agnostic
+                chrome.cookies.remove({url: scheme + urlPieces + cookies[i].path, name: cookies[i].name});
+            }
+        });
+    }
 }

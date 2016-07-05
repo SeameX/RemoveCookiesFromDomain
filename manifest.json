@@ -11,6 +11,7 @@
     "128": "img/cookie.png"
   },
   "permissions": [
+    "tabs",
     "cookies",
     "<all_urls>"
   ],
