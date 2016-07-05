@@ -1,0 +1,6 @@
+{
+  "name": "Remove cookie(s) for the current domain",
+  "tagline": "Opera Addon to remove cookie(s) for the current domain",
+  "body": "# RemoveCookiesFromDomain\r\nThis Opera Addon removes all cookies from the current site with just one click.\r\n\r\n# Credits\r\n* Extension understanding (https://developer.chrome.com/extensions/cookies)\r\n* Delete current cookies (https://github.com/SingleClickApps/disable-cookies-opera)\r\n* Icon (http://www.flaticon.com/authors/yuliia-shchetinina)",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
