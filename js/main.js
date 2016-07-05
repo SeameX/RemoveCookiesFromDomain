@@ -1,9 +1,7 @@
 chrome.browserAction.onClicked.addListener(function (tab) {
 
     removeAllCookiesFromDomain(tab.url);
-
-    // Refresh tab
-    chrome.tabs.executeScript(tab.id, {code: 'window.location.reload();'});
+    chrome.tabs.reload(tab.id);
 });
 
 function removeAllCookiesFromDomain(currentTabUrl) {
