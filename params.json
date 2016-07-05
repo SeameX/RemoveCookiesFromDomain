@@ -1,6 +1,6 @@
 {
   "name": "Remove cookie(s) for the current domain",
   "tagline": "Opera Addon",
-  "body": "# Description\r\nThis Opera Addon removes all cookies from the current site with just one click.\r\n\r\n# Permissions\r\n* Cookies\r\nJust the right to use the Cookies API\r\n\r\n* <all urls> \r\nCookies are always defined for a domain. To remove every cookie i need the Permission \"all urls\"\r\n\r\n# Credits\r\n* Extension understanding (https://developer.chrome.com/extensions/cookies)\r\n* Delete current cookies (https://github.com/SingleClickApps/disable-cookies-opera)\r\n* Icon (http://www.flaticon.com/authors/yuliia-shchetinina)",
+  "body": "# Description\r\nThis Opera Addon removes all cookies from the current site with just one click.\r\n\r\n# Permissions\r\n* Cookies (Usage of the Cookie API)\r\n* all urls (Permission to remove cookies for every domain)\r\n\r\n# Credits\r\n* Extension understanding (https://developer.chrome.com/extensions/cookies)\r\n* Delete current cookies (https://github.com/SingleClickApps/disable-cookies-opera)\r\n* Icon (http://www.flaticon.com/authors/yuliia-shchetinina)",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
