@@ -1,0 +1,26 @@
+{
+  "name": "Remove cookie(s) for the current domain",
+  "version": "1.0.0",
+  "minimum_chrome_version": "19.0",
+  "manifest_version": 2,
+  "homepage_url": "https://seamex.github.io/RemoveCookiesFromDomain/",
+  "description": "Remove cookie(s) for the current site with just one click",
+  "icons": {
+    "16": "img/cookie.png",
+    "48": "img/cookie.png",
+    "128": "img/cookie.png"
+  },
+  "permissions": [
+    "cookies",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_icon": "img/cookie.png",
+    "default_title": "Remove cookie(s) for the current domain"
+  },
+  "incognito": "spanning",
+  "background": {
+    "page": "background.html",
+    "persistent": true
+  }
+}
