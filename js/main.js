@@ -2,11 +2,9 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     removeAllCookiesFromDomain(tab.url);
 });
 
-function removeAllCookiesFromDomain(domain) {
+function removeAllCookiesFromDomain(currentTabUrl) {
 
-    alert("d" + domain);
-
-    var noDotDomain = domain.match(/:\/\/(.[^/:]+)/)[1];
+    var noDotDomain = currentTabUrl.match(/:\/\/(.[^/:]+)/)[1];
     var domain = "." + noDotDomain;
     var mainDomain = domain;
     var mainDomainNoDot = noDotDomain;
