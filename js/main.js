@@ -46,7 +46,7 @@ function removeAllCookiesFromDomain(currentTabUrl) {
       // remove cookies for localhost
       chrome.cookies.getAll({domain: "localhost"}, function (cookies) {
           for (var i = 0; i < cookies.length; i++) {
-              var scheme = "";
+              var scheme = "http://";
               if(cookies[i].secure)
                   scheme = "https://";
 
