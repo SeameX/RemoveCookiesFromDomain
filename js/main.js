@@ -8,7 +8,7 @@ function removeAllCookiesFromDomain(currentTabUrl) {
     var url = (new URL(currentTabUrl)).hostname;
     // Don't split if domain is localhost
     if (url != 'localhost') {
-      var splittedUrl = (new URL(currentTabUrl)).hostname.split('.');
+      var splittedUrl = url.split('.');
       var urlPieces = splittedUrl.pop(); // *.de
 
       // Each time one more Subdomain
