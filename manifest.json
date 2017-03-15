@@ -1,6 +1,6 @@
 {
   "name": "Remove cookie(s) for the current domain",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minimum_chrome_version": "19.0",
   "manifest_version": 2,
   "homepage_url": "https://seamex.github.io/RemoveCookiesFromDomain/",
